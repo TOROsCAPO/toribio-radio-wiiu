@@ -1,0 +1,27 @@
+CA certificates bundle provenance
+=================================
+
+Bundled file:
+  apps/radio/content/ca-bundle.crt
+
+Source file:
+  usr/ssl/cert.pem
+
+Package:
+  ca-certificates 20250419-1 (MSYS2)
+
+Package description:
+  Common CA certificates
+
+Upstream information:
+  https://www.mozilla.org/en-US/about/governance/policies/security-group/certs/
+
+MSYS2 package information:
+  https://packages.msys2.org/base/ca-certificates
+
+SHA-256:
+  50d055ee716f373c901c34d80b275d7f599a582d36b6f1596bad92d61d61012d
+
+The MSYS2 package metadata declares MPL and GPL licensing. Individual root
+certificates remain subject to the terms and policies of their issuers. The
+bundle is redistributed unchanged for TLS server-certificate verification.
