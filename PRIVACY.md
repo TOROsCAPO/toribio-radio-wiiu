@@ -13,4 +13,4 @@ Como ocurre con cualquier conexión a Internet, Radio Browser, la emisora, su pr
 
 La aplicación no envía contraseñas, contactos, archivos personales ni identificadores de la cuenta Nintendo. No se deben colocar credenciales dentro de enlaces de emisoras o archivos de configuración.
 
-Los enlaces pueden cambiar o dirigir a proveedores externos. HTTPS utiliza el paquete de autoridades certificadoras incluido en la aplicación; la beta continuará validándolo en diferentes consolas y redes antes de una versión 1.0.
+Los enlaces pueden cambiar o dirigir a proveedores externos. Por una incompatibilidad de libcurl/mbedTLS en Wii U, esta beta cifra las conexiones HTTPS pero no valida temporalmente el certificado del servidor. No utiliza credenciales ni debe emplearse con streams privados.

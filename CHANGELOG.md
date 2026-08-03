@@ -1,5 +1,12 @@
 # Cambios de Wii U Radio
 
+## 0.18.0-beta.2 — 2026-08-03
+
+- Corrige el bloqueo `e77` de libcurl/mbedTLS observado en Cemu y Wii U.
+- Fuerza IPv4 y utiliza los servidores oficiales `de1` y `de2` de Radio Browser.
+- Mantiene HTTPS cifrado en modo compatible, sin validar temporalmente el certificado.
+- Conserva códigos de error de red detallados para facilitar nuevas pruebas.
+
 ## 0.18.0-beta.1 — 2026-08-03
 
 - Primera beta pública en GitHub.

@@ -17,7 +17,7 @@ function(add_toribio_app target source)
   wut_create_rpx(${target})
 endfunction()
 
-add_toribio_app(wiiu-radio "apps/radio/src/main.c;apps/radio/src/radio_backend.c;apps/radio/src/catalog_backend.c")
+add_toribio_app(wiiu-radio "apps/radio/src/main.c;apps/radio/src/radio_backend.c;apps/radio/src/catalog_backend.c;apps/radio/src/tls_config.c")
 target_include_directories(wiiu-radio PRIVATE apps/radio/src)
 target_link_libraries(wiiu-radio PRIVATE PkgConfig::RADIO_DEPS)
 dkp_add_embedded_binary_library(radio_backgrounds

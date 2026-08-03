@@ -2,7 +2,7 @@
 
 Reproductor de radio por Internet para Wii U, creado con devkitPro, devkitPPC y WUT y empaquetado como canal `.wuhb` para Aroma.
 
-Versión publicada: **0.18.0-beta.1**.
+Versión publicada: **0.18.0-beta.2**.
 
 > Proyecto homebrew comunitario y no oficial. No está afiliado, autorizado ni patrocinado por Nintendo, las emisoras, Radio Browser o los proyectos de las bibliotecas utilizadas.
 
@@ -27,11 +27,11 @@ Funciones disponibles:
 - Algunas emisoras cambian su enlace, restringen países o dejan de emitir temporalmente.
 - El filtro FM/AM depende del nombre publicado por cada emisora y puede clasificar algunas como Otras.
 - La beta actual no solicita cuentas ni contraseñas. No debe utilizarse con streams privados o credenciales.
-- HTTPS valida certificados con el paquete incluido. Esta integración todavía necesita pruebas prolongadas en distintas consolas y redes antes de declarar estable la versión 1.0.
+- Debido a una incompatibilidad de libcurl/mbedTLS en Wii U, esta beta cifra HTTPS pero no valida temporalmente el certificado del servidor. No introduzcas credenciales ni utilices streams privados.
 
 ## Instalación en Aroma
 
-1. Descarga `Toribio-Radio-0.18.0-beta.1-SD.zip` de [Releases](https://github.com/TOROsCAPO/toribio-radio-wiiu/releases), o el archivo `.wuhb` si prefieres instalarlo manualmente.
+1. Descarga `Toribio-Radio-0.18.0-beta.2-SD.zip` de [Releases](https://github.com/TOROsCAPO/toribio-radio-wiiu/releases), o el archivo `.wuhb` si prefieres instalarlo manualmente.
 2. Elimina cualquier copia anterior para evitar iconos duplicados.
 3. Copia el archivo con esta ruta:
 
@@ -60,7 +60,7 @@ chmod +x scripts/*.sh
 ./scripts/package.sh
 ```
 
-Los archivos RPX se generan en `build/` y los paquetes instalables en `dist/`. El paquete de certificados incluido en `apps/radio/content/` se incorpora automáticamente al `.wuhb` y no debe eliminarse.
+Los archivos RPX se generan en `build/` y los paquetes instalables en `dist/`.
 
 ## Datos y privacidad
 
