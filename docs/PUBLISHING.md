@@ -20,17 +20,23 @@
    - notas de cambios y limitaciones.
 5. Añadir el enlace de donación solamente después de que la plataforma apruebe la cuenta receptora.
 
+## PayPal y botón Sponsor de GitHub
+
+El repositorio utiliza `.github/FUNDING.yml` para mostrar un enlace externo de apoyo voluntario hacia PayPal. El enlace no debe presentarse como una compra, suscripción o acceso a contenidos.
+
+PayPal requiere que el valor `business` coincida con una dirección confirmada de la cuenta receptora. Antes de anunciar el enlace, el titular debe abrirlo y comprobar que PayPal muestre correctamente su cuenta.
+
 ## GitHub Sponsors
 
 GitHub Sponsors admite desarrolladores residentes en Uruguay. La cuenta debe solicitar y completar su perfil de patrocinio, incluidos los datos de cobro y fiscales requeridos por GitHub.
 
-Después de la aprobación se puede crear `.github/FUNDING.yml` con:
+Si GitHub aprueba posteriormente un perfil de Sponsors, se puede agregar también:
 
 ```yaml
 github: [USUARIO_DE_GITHUB]
 ```
 
-No publiques el texto de ejemplo sin reemplazarlo por el usuario real.
+No publiques el texto de ejemplo sin reemplazarlo por el usuario real. GitHub permite combinar Sponsors con hasta cuatro enlaces personalizados.
 
 ## Homebrew App Store
 
