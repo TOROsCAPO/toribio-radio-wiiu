@@ -74,6 +74,12 @@ Los errores técnicos y las solicitudes relacionadas con una emisora deben abrir
 
 Las donaciones, cuando se habiliten, apoyarán únicamente el desarrollo, las pruebas y la documentación de la aplicación. No compran acceso a emisoras ni derechos sobre sus contenidos.
 
+## Apoyar el proyecto
+
+Si Toribio Radio te resulta útil, puedes [apoyar voluntariamente el desarrollo mediante PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=diego_del_mar%40hotmail.com&item_name=Desarrollo+de+Toribio+Radio+para+Wii+U&currency_code=USD).
+
+La aplicación seguirá siendo gratuita y de código abierto. Una contribución no compra emisoras, contenidos, funciones exclusivas, prioridad de soporte ni derechos sobre el proyecto. PayPal procesa el pago directamente y puede aplicar sus propias comisiones o conversión de moneda.
+
 ## Licencias
 
 El código propio está disponible bajo licencia MIT. El ejecutable también utiliza componentes de terceros con sus propias condiciones. Lee [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) y la carpeta `third_party/licenses/` antes de redistribuir una compilación.
