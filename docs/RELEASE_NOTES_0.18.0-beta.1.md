@@ -33,3 +33,7 @@ También puedes descargar el `.wuhb` y copiarlo manualmente en esa ruta. Elimina
 ## Aviso
 
 Proyecto homebrew gratuito, abierto y no oficial. No está afiliado con Nintendo ni con las emisoras. Las donaciones voluntarias apoyan el desarrollo de la aplicación y no conceden acceso ni derechos sobre transmisiones.
+
+## Apoyo voluntario
+
+Puedes [apoyar el desarrollo mediante PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=diego_del_mar%40hotmail.com&item_name=Desarrollo+de+Toribio+Radio+para+Wii+U&currency_code=USD). Toribio Radio seguirá siendo gratuito y abierto; la contribución no concede funciones, contenidos ni soporte preferente.
