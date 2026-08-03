@@ -1,0 +1,41 @@
+name: Error de la aplicación
+description: Informar un fallo reproducible en Wii U o Cemu
+title: "[Error] "
+labels:
+  - bug
+body:
+  - type: dropdown
+    id: environment
+    attributes:
+      label: Entorno
+      options:
+        - Wii U real con Aroma
+        - Cemu
+        - Ambos
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Versión de Toribio Radio
+      placeholder: 0.15.0-beta
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Pasos para reproducirlo
+      description: Indica país, filtro, controles utilizados y qué ocurrió.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Resultado esperado
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Fotos, video o mensaje mostrado
+      description: No publiques contraseñas, tokens ni datos personales.

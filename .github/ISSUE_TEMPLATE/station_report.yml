@@ -1,0 +1,43 @@
+name: Problema o retirada de emisora
+description: Informar una emisora rota, duplicada, incorrecta o solicitar su retirada
+title: "[Emisora] "
+labels:
+  - station
+body:
+  - type: input
+    id: station
+    attributes:
+      label: Nombre de la emisora
+    validations:
+      required: true
+  - type: input
+    id: country
+    attributes:
+      label: País
+    validations:
+      required: true
+  - type: dropdown
+    id: reason
+    attributes:
+      label: Motivo
+      options:
+        - No reproduce
+        - Está duplicada
+        - País o banda incorrectos
+        - Solicitud del titular para retirarla
+        - Otro
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Detalles y evidencia
+      description: No incluyas credenciales ni enlaces privados.
+    validations:
+      required: true
+  - type: checkboxes
+    id: rights
+    attributes:
+      label: Si solicitas una retirada
+      options:
+        - label: Declaro que soy el titular o que estoy autorizado para representar a la emisora.
