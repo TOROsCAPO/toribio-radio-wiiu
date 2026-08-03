@@ -24,6 +24,7 @@ typedef struct {
     size_t read_pos, write_pos, used;
     unsigned underrun_count;
     unsigned overflow_count;
+    char curl_error[CURL_ERROR_SIZE];
     char state[96];
 } RadioBackend;
 

@@ -1,11 +1,12 @@
 #include "catalog_backend.h"
+#include "tls_config.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 static const char *const catalog_servers[] = {
-    "https://de2.api.radio-browser.info",
-    "https://radios.axiomaudio.com"
+    "https://de1.api.radio-browser.info",
+    "https://de2.api.radio-browser.info"
 };
 #define CATALOG_SERVER_COUNT (sizeof(catalog_servers) / sizeof(catalog_servers[0]))
 
@@ -190,14 +191,21 @@ static bool start_page(CatalogBackend *c) {
     c->http_status = 0;
     curl_easy_setopt(c->easy, CURLOPT_URL, url);
     curl_easy_setopt(c->easy, CURLOPT_FOLLOWLOCATION, 1L);
-    curl_easy_setopt(c->easy, CURLOPT_USERAGENT, "Toribio-WiiU-Radio/0.18.0-beta.1");
+    c->curl_error[0] = 0;
+    curl_easy_setopt(c->easy, CURLOPT_ERRORBUFFER, c->curl_error);
+    curl_easy_setopt(c->easy, CURLOPT_USERAGENT, "Toribio-WiiU-Radio/0.18.0-beta.2");
+    curl_easy_setopt(c->easy, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
+    curl_easy_setopt(c->easy, CURLOPT_DNS_CACHE_TIMEOUT, 60L);
     curl_easy_setopt(c->easy, CURLOPT_CONNECTTIMEOUT_MS, 7000L);
     curl_easy_setopt(c->easy, CURLOPT_TIMEOUT_MS, 20000L);
     curl_easy_setopt(c->easy, CURLOPT_LOW_SPEED_LIMIT, 128L);
     curl_easy_setopt(c->easy, CURLOPT_LOW_SPEED_TIME, 10L);
-    curl_easy_setopt(c->easy, CURLOPT_CAINFO, "/vol/content/ca-bundle.crt");
-    curl_easy_setopt(c->easy, CURLOPT_SSL_VERIFYPEER, 1L);
-    curl_easy_setopt(c->easy, CURLOPT_SSL_VERIFYHOST, 2L);
+    if (!toribio_configure_tls(c->easy)) {
+        curl_easy_cleanup(c->easy);
+        c->easy = NULL;
+        snprintf(c->state, sizeof(c->state), "No se pudo configurar HTTPS");
+        return false;
+    }
     curl_easy_setopt(c->easy, CURLOPT_FAILONERROR, 1L);
     curl_easy_setopt(c->easy, CURLOPT_FRESH_CONNECT, 1L);
     curl_easy_setopt(c->easy, CURLOPT_FORBID_REUSE, 1L);
@@ -281,7 +289,8 @@ void catalog_update(CatalogBackend *c) {
                     snprintf(c->state, sizeof(c->state), "Carga parcial: %u emisoras",
                              (unsigned)c->station_count);
                 else if (done != CURLE_OK)
-                    snprintf(c->state, sizeof(c->state), "Catalogo: %s", curl_easy_strerror(done));
+                    snprintf(c->state, sizeof(c->state), "Catalogo e%u: %.70s", (unsigned)done,
+                             c->curl_error[0] ? c->curl_error : curl_easy_strerror(done));
                 else if (c->http_status >= 400)
                     snprintf(c->state, sizeof(c->state), "Servidor de radios: HTTP %ld",
                              c->http_status);

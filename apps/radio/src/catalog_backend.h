@@ -24,6 +24,7 @@ typedef struct {
     unsigned retry_wait_frames;
     unsigned server_index;
     long http_status;
+    char curl_error[CURL_ERROR_SIZE];
     char state[96];
 } CatalogBackend;
 

@@ -1,4 +1,5 @@
 #include "radio_backend.h"
+#include "tls_config.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -131,10 +132,16 @@ bool radio_start(RadioBackend *r, const char *url) {
     SDL_UnlockMutex(r->mutex);
     curl_easy_setopt(r->easy, CURLOPT_URL, url);
     curl_easy_setopt(r->easy, CURLOPT_FOLLOWLOCATION, 1L);
-    curl_easy_setopt(r->easy, CURLOPT_CAINFO, "/vol/content/ca-bundle.crt");
-    curl_easy_setopt(r->easy, CURLOPT_SSL_VERIFYPEER, 1L);
-    curl_easy_setopt(r->easy, CURLOPT_SSL_VERIFYHOST, 2L);
-    curl_easy_setopt(r->easy, CURLOPT_USERAGENT, "Toribio-WiiU-Radio/0.18.0-beta.1");
+    r->curl_error[0] = 0;
+    curl_easy_setopt(r->easy, CURLOPT_ERRORBUFFER, r->curl_error);
+    if (!toribio_configure_tls(r->easy)) {
+        snprintf(r->state, sizeof(r->state), "No se pudo configurar HTTPS");
+        radio_stop(r);
+        return false;
+    }
+    curl_easy_setopt(r->easy, CURLOPT_USERAGENT, "Toribio-WiiU-Radio/0.18.0-beta.2");
+    curl_easy_setopt(r->easy, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
+    curl_easy_setopt(r->easy, CURLOPT_DNS_CACHE_TIMEOUT, 60L);
     curl_easy_setopt(r->easy, CURLOPT_CONNECTTIMEOUT_MS, 5000L);
     curl_easy_setopt(r->easy, CURLOPT_LOW_SPEED_LIMIT, 128L);
     curl_easy_setopt(r->easy, CURLOPT_LOW_SPEED_TIME, 15L);
@@ -170,7 +177,9 @@ void radio_update(RadioBackend *r) {
     while ((message = curl_multi_info_read(r->multi, &messages))) {
         if (message->msg == CURLMSG_DONE && message->easy_handle == r->easy) {
             if (message->data.result != CURLE_OK)
-                snprintf(r->state, sizeof(r->state), "Red: %s", curl_easy_strerror(message->data.result));
+                snprintf(r->state, sizeof(r->state), "Red e%u: %.72s",
+                         (unsigned)message->data.result,
+                         r->curl_error[0] ? r->curl_error : curl_easy_strerror(message->data.result));
             else
                 snprintf(r->state, sizeof(r->state), "Stream finalizado");
             r->running = false;
